@@ -12,11 +12,11 @@
         isActorSelected: false,
 
         markSingle: function(e) {
-            var $button = $(e.target);
+            var $button = $(e.target).parent("div");
             this.data.type = $button[0].id;
             $(".radioButton").removeClass("marked");
-            $($button).addClass("marked");
-            this.updateSelection($button[0].id);
+            $button.addClass("marked");
+            this.updateSelection(this.data.type);
         },
 
         updateSelection: function(id) {
@@ -25,8 +25,8 @@
             app.tagService.viewModel.set("isActorSelected", id == "actor" ? true : false);
         },
         mark: function(e) {
-            var $button = $(e.target);
-            var _id = $button.parent("div")[0].id;
+            var $button = $(e.target).parent("div");
+            var _id = $button[0].id;
 
             if($button.hasClass("marked")) {
                 var newCategories = [];

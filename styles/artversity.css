@@ -112,6 +112,29 @@
   border: 5px solid gray;
   position: relative;
   opacity: 0.5;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.category img {
+  position: absolute;
+  top: 10px;
+  left: 5px;
+  width: 60px;
+  height: 60px;
+}
+#orange {
+  background-color: orange;
+}
+
+#green {
+  background-color: green;
+}
+
+#red {
+  background-color: red;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .centered {
@@ -125,4 +148,11 @@
 
 .clear {
   clear: both;
+}
+
+.bla {
+  height: 40px;
+  /*width: 100px;
+  border-radius: 20px;
+  padding-left: 10px;*/
 }
