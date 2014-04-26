@@ -15,6 +15,12 @@
 
             that.updateLoading(1);
 
+            this.clearMarkers();
+
+            if(!google) {
+                return;
+            }
+
             navigator.geolocation.getCurrentPosition(
                 function (position) {
                     var currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -40,6 +46,14 @@
                     enableHighAccuracy: false
                 }
             );
+        },
+
+        clearMarkers: function () {
+          for (var i = 0; i < this._markers.length; i++ ) {
+            this._markers[i].setMap(null);
+          }
+
+          this._markers.length = 0;
         },
 
         loadMarkers: function () {
@@ -122,11 +136,12 @@
             };
 
             map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-            app.mapService.viewModel.loadCurrentLocation.apply(app.mapService.viewModel, []);
-            app.mapService.viewModel.loadMarkers.apply(app.mapService.viewModel, []);
         },
 
         show: function () {
+            app.mapService.viewModel.loadCurrentLocation.apply(app.mapService.viewModel, []);
+            app.mapService.viewModel.loadMarkers.apply(app.mapService.viewModel, []);
+
             if (!app.mapService.viewModel.get("isGoogleMapsInitialized")) {
                 return;
             }
