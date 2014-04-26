@@ -5,18 +5,15 @@
     PerformanceViewModel = kendo.data.ObservableObject.extend({
         init: function () {
             var that = this,
-                dataSource,
-                performance;
+                dataSource;
 
             kendo.data.ObservableObject.fn.init.apply(that, []);
 
             $.getJSON("data/performance.json").success(function(data) {
-                performance = data;
-                that.set("picture", performance.picture);
-                that.set("type", performance.type);
+                that.set('performance', data);
             }).fail(function() {
-                console.log('fail');
-            })
+                navigator.notification.alert("Cannot read performance information!");
+            });
 
             dataSource = new kendo.data.DataSource({
                 transport: {
@@ -26,7 +23,6 @@
                     }
                 }
             });
-
 
             that.set("performanceMediaDataSource", dataSource);
         }

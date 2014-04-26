@@ -7,6 +7,7 @@
         app.application = new kendo.mobile.Application(document.body, {
           skin:   "flat",
           layout: "tabstrip-layout"
+
         });
     }, false);
 })(window);

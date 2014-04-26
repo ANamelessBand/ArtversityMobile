@@ -1,5 +1,5 @@
 {
-  "picture": "picture",
+  "picture": "styles/images/anonymous.png",
   "type": "Musician",
   "categories": [
     {"name": "Guitar"},

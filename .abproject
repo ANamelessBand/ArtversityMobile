@@ -49,8 +49,7 @@
 		"android.permission.BROADCAST_STICKY"
 	],
 	"DeviceOrientations": [
-		"Portrait",
-		"Landscape"
+		"Portrait"
 	],
 	"AndroidHardwareAcceleration": "false",
 	"AndroidVersionCode": "1",
