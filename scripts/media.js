@@ -55,6 +55,7 @@
                 ft.upload(imageURI, encodeURI("https://api.imgur.com/3/image"), win, fail, options);
             }
 
+            // Awesome Epic Win!
             function win(r) {
                 // console.log("Params= " + r.params)
                 console.log("Code = " + r.responseCode);
@@ -62,6 +63,7 @@
                 console.log("Sent = " + r.bytesSent);
             }
 
+            // Where innocent kittens die
             function fail(error) {
                 alert("An error has occurred: Code = " + error.code);
                 console.log("upload error source " + error.source);
