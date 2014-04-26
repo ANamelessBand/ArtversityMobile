@@ -3,6 +3,11 @@
         app = global.app = global.app || {};
 
     MediaViewModel = kendo.data.ObservableObject.extend({
+        skipMedia: function() {
+            kendo.mobile.application.navigate("#tabstrip-home");
+            var tabstrip = $("#footer-tabstrip").data("kendoMobileTabStrip");
+            tabstrip.switchTo("#tabstrip-home");
+        },
         takePicture: function() {
             console.log("Take picture");
 

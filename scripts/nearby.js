@@ -4,6 +4,7 @@
 
     NearbyViewModel = kendo.data.ObservableObject.extend({
         nearbyDataSource: [],
+        isLoading: true,
 
         init: function () {
             var that = this;
@@ -24,6 +25,7 @@
                         });
 
                         app.nearbyService.viewModel.set("nearbyDataSource", dataSource);
+                        app.nearbyService.viewModel.set("isLoading", false);
                     }
                     else {
                         kendo.mobile.application.navigate("views/tag.html")    
