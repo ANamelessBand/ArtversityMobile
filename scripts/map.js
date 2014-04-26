@@ -17,10 +17,11 @@
 
             navigator.geolocation.getCurrentPosition(
                 function (position) {
-                    position = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                    map.panTo(position);
-                    that.putMarker(position, "user-marker-16");
-
+                    var currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    map.panTo(currentPosition);
+                    that.putMarker(currentPosition, "user-marker-16");
+                    app.mapService.viewModel.set("position", 
+                        {"latitude": position.coords.latitude, "longitude": position.coords.longitude});
                     that.updateLoading(-1);
                 },
                 function (error) {

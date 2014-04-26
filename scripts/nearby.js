@@ -12,13 +12,12 @@
 
         show: function(e) {
             var position = app.mapService.viewModel.get("position");
-            console.dir(position);
             if(position) {
                 kendo.mobile.application.showLoading();
                 $.ajax({
-                  url: app.serverEndpoint + "/performances/nearby/" + position.latitude + "/" + position.longitude
+                  url: app.serverEndpoint + "performances/nearby/" + position.latitude + "/" + position.longitude
                 }).done(function(data) {
-                    var performances = jQuery.parseJSON( data );
+                    var performances = data;
                     if(performances.length !== 0) {
                         var dataSource = new kendo.data.DataSource({
                             data: performances,
