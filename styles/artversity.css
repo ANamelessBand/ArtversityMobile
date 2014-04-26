@@ -102,3 +102,27 @@
   color: green;
   background-color: blue;
 }
+
+.category {
+  border-radius: 360px;
+  width: 90px;
+  height: 90px;
+  margin-left: 10px;
+  float: left;
+  border: 5px solid gray;
+  position: relative;
+  opacity: 0.5;
+}
+
+.centered {
+  text-align: center;
+}
+
+.marked {
+  opacity: 1;
+  border-color: black;
+}
+
+.clear {
+  clear: both;
+}
