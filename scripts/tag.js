@@ -25,9 +25,10 @@
             app.tagService.viewModel.set("isActorSelected", id == "actor" ? true : false);
         },
         mark: function(e) {
-            var $button = $(e.target)
+            var $button = $(e.target);
+            var _id = $button.parent("div")[0].id;
+
             if($button.hasClass("marked")) {
-                $button.removeClass("marked");
                 var newCategories = [];
                 for(var cat in this.data.categories) {
                     if(this.data.categories.hasOwnProperty(cat)) {
@@ -38,9 +39,9 @@
                 }
                 this.data.categories = newCategories;
             } else {
-                $($button).addClass("marked");
-                this.data.categories.push($button[0].id);
+                this.data.categories.push(_id);
             }
+            $button.toggleClass("marked");
         },
         setBandSize: function(e) {
             this.data.isBand = $(e.target)[0].id == "0" ? false : true;
