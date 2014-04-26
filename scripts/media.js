@@ -72,6 +72,7 @@
                     path = mediaFiles[i].fullPath;
                     console.log("Path to video file: " + path);
                 }
+                kendo.mobile.application.navigate("views/view_performance.html");
             }
 
             function captureFail(error) {
