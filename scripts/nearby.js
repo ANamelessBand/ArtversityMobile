@@ -20,7 +20,6 @@
                     }
                 });
 
-                console.dir(dataSource);
                 that.set("nearbyDataSource", dataSource);
             //}));
         }

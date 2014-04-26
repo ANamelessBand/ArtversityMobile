@@ -47,17 +47,18 @@
             that.updateLoading(1);
 
             $.ajax({
-              url: app.serverEndpoint + "/performances"
+              url: app.serverEndpoint + "performances/all"
             }).done(function(data) {
-                var markers = jQuery.parseJSON( data );
+                var markers = data;
                 
                 $.each(markers, function(index ,element) {
-                    position = new google.maps.LatLng(element.Latitude, element.Longitude);
+                    position = new google.maps.LatLng(element.location_latitude, element.location_longitude);
                     that.putMarker(position, "performer-marker-16", element.id, function(marker) {
                         that.set("performance_id", marker.performance_id);
                         kendo.mobile.application.navigate("views/view_performance.html");
                     });
                 });
+
                 that.updateLoading(-1);
             })
             .fail(function() {
