@@ -21,12 +21,17 @@
                 data-content-height="200px">
             </div>
         </div>
+        <p>
+          Last Seen: <span data-bind="text: performance.last_seen"></span><br />
+          Seen By: <span data-bind="text: performance.seen_by"></span><br />
+        </p>
     </p>
 </div>
 
+
 <!--Performance Media Template-->
 <script id="performance-media-template" type="text/x-kendo-tmpl">
-  <a href="index.html"><div class="photo" style="background-image: url('${url}')" data-role="page"></div></a>
+<a href="views/view_image.html?url=${url}" data-role="button"><div class="photo" style="background-image: url('${url}')" data-role="page"></div></a>
 </script>
 
 <script id="categories-template" type="text/x-kendo-tmpl">

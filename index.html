@@ -9,10 +9,14 @@
     <script src="cordova.js"></script>
     <script src="kendo/js/jquery.min.js"></script>
     <script src="kendo/js/kendo.mobile.min.js"></script>
-    <!--script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script!-->
+
+    <!-- #ifdef kris -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+    <!-- #endif -->
 
     <script src="scripts/app.js"></script>
     <script src="scripts/view_performance.js"></script>
+    <script src="scripts/view_image.js"></script>
     <script src="scripts/map.js"></script>
     <script src="scripts/media.js"></script>
     <script src="scripts/app.js"></script>
@@ -34,6 +38,33 @@
             <h3>Location requires internet connection to display the map.</h3>
         </div>
     </div>
+<<<<<<< HEAD
+=======
+
+    <!--Weather View-->
+    <div id="tabstrip-weather"
+        data-role="view"
+        data-title="Weather"
+        data-model="app.weatherService.viewModel">
+
+        <ul data-role="listview" data-style="inset"
+            data-bind="source: weatherDataSource"
+            data-template="weather-forecast-template">
+        </ul>
+    </div>
+
+    <!--Weather forecast template-->
+    <script id="weather-forecast-template" type="text/x-kendo-tmpl">
+        <div class="w-item-template">
+            <span class="w-icon ${image}"></span>
+            <h4 class="w-date">${day}</h4>
+            <div class="w-temp">
+                <span>${highTemperature}<sup>&deg;</sup></span>
+                <span>${lowTemperature}<sup>&deg;</sup></span>
+            </div>
+        </div>
+    </script>
+>>>>>>> Performance View screen - view image in full screen
 
     <!--Layout-->
     <div data-role="layout" data-id="tabstrip-layout">

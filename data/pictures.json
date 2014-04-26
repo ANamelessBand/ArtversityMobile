@@ -1,8 +1,8 @@
 [
-  {"url": "styles/images/performer1.jpg"},
-  {"url": "styles/images/anonymous.png"},
-  {"url": "styles/images/anonymous.png"},
-  {"url": "styles/images/anonymous.png"},
-  {"url": "styles/images/anonymous.png"}
+  {"id": "1", "url": "styles/images/performer1.jpg"},
+  {"id": "2", "url": "styles/images/anonymous.png"},
+  {"id": "3", "url": "styles/images/anonymous.png"},
+  {"id": "4", "url": "styles/images/anonymous.png"},
+  {"id": "5", "url": "styles/images/anonymous.png"}
 ]
 

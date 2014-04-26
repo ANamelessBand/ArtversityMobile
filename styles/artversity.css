@@ -35,14 +35,30 @@
   background-position: center center;
 }
 
-/* .km-wp #view-performance .photo { */
-/*   height: 15em; */
-/* } */
-
 #scrollview-container {
   margin: 0 auto;
   padding-top: 2em;
 }
+
+#scrollview-container .km-button {
+  background: none;
+  border: 0;
+}
+
+/* View Image Screen */
+
+.fullscreen-picture {
+  position:relative;
+  top: 100px;
+  width: 100%;
+}
+
+#view-image .km-content {
+  background-color: #000;
+}
+
+
+/* Upload Media Screen */
 
 #media-buttons {
   padding-top: 5em;
@@ -59,9 +75,7 @@
   text-align: center;
 }
 
-.km-wp #view-performance .photo {
-  height: 15em;
-}
+/* Nearby Screen */
 
 .nearby-templ .image {
   width: 100px;

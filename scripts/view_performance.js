@@ -25,9 +25,8 @@
             });
 
             that.set("performanceMediaDataSource", dataSource);
-        }
+        },
     });
-
     app.performanceViewService = {
         viewModel: new PerformanceViewModel()
     };
