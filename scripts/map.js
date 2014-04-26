@@ -6,28 +6,30 @@
     MapViewModel = kendo.data.ObservableObject.extend({
         _loadingRemaining: 0,
         _markers: [],
+        position: null,
 
         isGoogleMapsInitialized: false,
 
         loadCurrentLocation: function () {
-            var that = this,
-                position;
+            var that = this;
 
             that.updateLoading(1);
 
             navigator.geolocation.getCurrentPosition(
                 function (position) {
-                    position = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                    map.panTo(position);
-                    that.putMarker(position, "user-marker-16");
+                    var currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    map.panTo(currentPosition);
+                    that.putMarker(currentPosition, "user-marker-16");
+                    app.mapService.viewModel.set("position", 
+                        { latitude: position.coords.latitude, longitude: position.coords.longitude });
 
                     that.updateLoading(-1);
                 },
                 function (error) {
                     navigator.notification.alert(error);
                     //default map coordinates set at FMI
-                    position = new google.maps.LatLng(42.673658, 23.3301228);
-                    map.panTo(position);
+                    var defaultPosition = new google.maps.LatLng(42.673658, 23.3301228);
+                    map.panTo(defaultPosition);
 
                     that.updateLoading(-1);
 
@@ -61,7 +63,7 @@
                 that.updateLoading(-1);
             })
             .fail(function() {
-                navigator.notification.alert("Unable to get the list of nearby performances",
+                navigator.notification.alert("Unable to get the list of performances",
                         function () { }, "Updating performances failed", 'OK');
  
                 that.updateLoading(-1);
