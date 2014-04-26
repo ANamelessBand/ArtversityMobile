@@ -1,0 +1,8 @@
+{
+  "picture": "picture",
+  "type": "Musician",
+  "categories": [
+    {"name": "Guitar"},
+    {"name": "Violin"}
+  ]
+}

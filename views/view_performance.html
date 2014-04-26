@@ -1,0 +1,26 @@
+<!--View Performance-->
+<div
+    id="view-performance"
+    data-role="view"
+    data-title="View Performance"
+    data-model="app.performanceViewService.viewModel">
+    <p>
+        <div class="profile-picture"><img src="styles/images/anonymous.png" /></div>
+        <p class="pull-left">
+          <br />----------<br />
+          Type: Musician<br />
+          Categories: Guitar, Violin
+        </p>
+        <div id="scrollview-container">
+            <div
+                data-role="scrollview"
+                data-bind="source: performanceMediaDataSource"
+                data-template="performance-media-template">
+            </div>
+        </div>
+    </p>
+</div>
+<!--Performance Media Template-->
+<script id="performance-media-template" type="text/x-kendo-tmpl">
+  <div class="photo" style="background-image: url('${url}')" data-role="page"></div>
+</script>

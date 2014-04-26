@@ -1,0 +1,36 @@
+/* ********************* */
+/* Custom ArtVersity CSS */
+/* ********************* */
+
+
+/* General Styles */
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+/* View Performance */
+
+#view-performance .profile-picture {
+  float: left;
+  margin: 0 1em;
+}
+
+#view-performance .photo {
+  margin: 0;
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  -webkit-background-size: auto 100%;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.km-wp #view-performance .photo {
+  height: 15em;
+}
