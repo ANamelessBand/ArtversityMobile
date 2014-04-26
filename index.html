@@ -10,26 +10,54 @@
     <script src="cordova.js"></script>
     <script src="kendo/js/jquery.min.js"></script>
     <script src="kendo/js/kendo.mobile.min.js"></script>
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
 
     <script src="scripts/login.js"></script>
     <script src="scripts/view_performance.js"></script>
-    <script src="scripts/location.js"></script>
+    <script src="scripts/map.js"></script>
     <script src="scripts/weather.js"></script>
     <script src="scripts/app.js"></script>
 </head>
 <body>
-    <!--Home View-->
     <div id="tabstrip-home"
         data-role="view"
-        data-title="Home">
-        <header data-role="header">
-            <div data-role="navbar">
-                <span data-role="view-title"></span>
-            </div>
-        </header>
-        <h3>Maps Be Here!</h3>
+        data-title="Performances"
+        data-init="app.mapService.initLocation"
+        data-show="app.mapService.show"
+        data-hide="app.mapService.hide"
+        data-model="app.mapService.viewModel"
+        data-stretch="true">
+
+        <div id="map-canvas" class="map" data-bind="visible: isGoogleMapsInitialized"></div>
+
+        <div id="no-map" data-bind="invisible: isGoogleMapsInitialized">
+            <h3>Location requires internet connection to display the map.</h3>
+        </div>
     </div>
+    
+    <!--Weather View-->
+    <div id="tabstrip-weather"
+        data-role="view"
+        data-title="Weather"
+        data-model="app.weatherService.viewModel">
+
+        <ul data-role="listview" data-style="inset"
+            data-bind="source: weatherDataSource"
+            data-template="weather-forecast-template">
+        </ul>
+    </div>
+
+    <!--Weather forecast template-->
+    <script id="weather-forecast-template" type="text/x-kendo-tmpl">
+        <div class="w-item-template">
+            <span class="w-icon ${image}"></span>
+            <h4 class="w-date">${day}</h4>
+            <div class="w-temp">
+                <span>${highTemperature}<sup>&deg;</sup></span>
+                <span>${lowTemperature}<sup>&deg;</sup></span>
+            </div>
+        </div>
+    </script>
 
     <!--Layout-->
     <div data-role="layout" data-id="tabstrip-layout">
@@ -43,9 +71,8 @@
         <!--Footer-->
         <div data-role="footer">
             <div data-role="tabstrip">
-                <a href="#/" data-icon="home">Home</a>
+                <a href="#" data-icon="home">Performances</a>
                 <a href="views/sample_view.html" data-icon="contacts">Sample View</a>
-                <a href="#" data-icon="search">New View 2</a>
                 <a href="views/view_performance.html" data-icon="globe">View Performance</a>
             </div>
         </div>

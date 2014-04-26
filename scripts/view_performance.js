@@ -12,13 +12,11 @@
 
             $.getJSON("data/performance.json").success(function(data) {
                 performance = data;
+                that.set("picture", performance.picture);
+                that.set("type", performance.type);
             }).fail(function() {
                 console.log('fail');
             })
-
-            that.set("picture", performance.picture);
-            that.set("type", performance.type);
-
 
             dataSource = new kendo.data.DataSource({
                 transport: {
