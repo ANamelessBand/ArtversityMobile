@@ -9,7 +9,7 @@
 
             kendo.data.ObservableObject.fn.init.apply(that, []);
 
-            $.getJSON("data/performance.json").success(function(data) {
+            $.getJSON(app.serverEndpoint + "/performances/1").success(function(data) {
                 that.set('performance', data);
             }).fail(function() {
                 navigator.notification.alert("Cannot read performance information!");
@@ -28,6 +28,9 @@
         },
     });
     app.performanceViewService = {
+        show: function(e) {
+            console.log('showing')
+        },
         viewModel: new PerformanceViewModel()
     };
 })(window);

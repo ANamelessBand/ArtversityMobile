@@ -3,11 +3,12 @@
     id="view-performance"
     data-role="view"
     data-title="View Performance"
+    data-show="app.performanceViewService.show"
     data-model="app.performanceViewService.viewModel">
     <p>
         <div class="profile-picture"><img data-bind="attr: {src: performance.picture}" /></div>
         <p>
-          Type: <span data-bind="text: performance.type"></span><br />
+          Type: <span data-bind="text: performance.type.name"></span><br />
           <ul id="cardsList"
                 data-role="listview"
                 data-bind="source: performance.categories" data-template="categories-template"></ul>
@@ -23,7 +24,7 @@
         </div>
         <p>
           Last Seen: <span data-bind="text: performance.last_seen"></span><br />
-          Seen By: <span data-bind="text: performance.seen_by"></span><br />
+          Seen By: <span data-bind="text: performance.times_tagged"></span><br />
         </p>
     </p>
 </div>
@@ -31,7 +32,7 @@
 
 <!--Performance Media Template-->
 <script id="performance-media-template" type="text/x-kendo-tmpl">
-<a href="views/view_image.html?url=${url}" data-role="button"><div class="photo" style="background-image: url('${url}')" data-role="page"></div></a>
+  <a href="views/view_image.html?url=${url}" data-role="button"><div class="photo" style="background-image: url('${url}')" data-role="page"></div></a>
 </script>
 
 <script id="categories-template" type="text/x-kendo-tmpl">
