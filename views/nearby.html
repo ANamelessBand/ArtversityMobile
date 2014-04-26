@@ -1,14 +1,15 @@
 <div id="tabstrip-nearby"
         data-role="view"
         data-title="Nearby"
+        data-show="app.nearbyService.viewModel.show"
         data-model="app.nearbyService.viewModel">
 
         <ul data-role="listview" data-style="inset"
-            data-bind="source: nearbyDataSource"
+            data-bind="source: nearbyDataSource, visible: nearbyDataSource"
             data-template="nearby-template">
         </ul>
         <div id="newTag">
-            <a data-role="button" data-icon="add" class="button green-button" href="new-tag.html">New tag</a>
+            <a data-role="button" data-icon="add" class="button green-button" href="views/tag.html">New tag</a>
         </div>
 
     </div>
