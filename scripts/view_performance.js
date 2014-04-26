@@ -9,12 +9,6 @@
 
             kendo.data.ObservableObject.fn.init.apply(that, []);
 
-            $.getJSON("data/performance.json").success(function(data) {
-                that.set('performance', data);
-            }).fail(function() {
-                navigator.notification.alert("Cannot read performance information!");
-            });
-
             dataSource = new kendo.data.DataSource({
                 transport: {
                     read: {
@@ -26,11 +20,23 @@
 
             that.set("performanceMediaDataSource", dataSource);
         },
+
+        loadPerformance: function(id) {
+            var that = this;
+
+            $.getJSON(app.serverEndpoint + "/performances/" + id).success(function(data) {
+                that.set('performance', data);
+            }).fail(function() {
+                navigator.notification.alert("Cannot read performance information!");
+            });
+        },
     });
+
     app.performanceViewService = {
         show: function(e) {
-            console.log('showing')
+            app.performanceViewService.viewModel.loadPerformance(1);
         },
+
         viewModel: new PerformanceViewModel()
     };
 })(window);

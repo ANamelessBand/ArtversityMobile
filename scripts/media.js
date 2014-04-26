@@ -3,8 +3,9 @@
         app = global.app = global.app || {};
 
     MediaViewModel = kendo.data.ObservableObject.extend({
-        takePicture: function() {
+        takePicture: function(e) {
             console.log("Take picture");
+            window.mytest = e;
 
             // navigator.camera.getPicture(onSuccess, onFail,
             // { destinationType : Camera.DestinationType.DATA_URL,

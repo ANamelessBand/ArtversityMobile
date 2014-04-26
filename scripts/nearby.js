@@ -26,7 +26,7 @@
                         app.nearbyService.viewModel.set("nearbyDataSource", dataSource);
                     }
                     else {
-                        kendo.mobile.application.navigate("views/tag.html")    
+                        kendo.mobile.application.navigate("views/tag.html")
                     }
                 })
                 .fail(function() {
