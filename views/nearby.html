@@ -1,0 +1,23 @@
+<div
+    data-role="view"
+    data-title="Nearby Performances"
+    data-model="app.nearbyService.viewModel"
+    data-init="app.nearbyService.viewModel.init">
+    <header data-role="header">
+        <div data-role="navbar">
+            <span data-role="view-title">Nearby Performances</span>
+        </div>
+    </header>
+    <ul
+        data-role="listview"
+        data-source="source: nearbyDataSource"
+        data-pull-to-refresh="true"
+        data-append-on-refresh="true"
+        data-template="performance-template">
+    </ul>
+    <span> I want stuffff here!</span>
+</div>
+
+<script type="text/x-kendo-template" id="performance-template">
+    #: bla # - #: balba #
+</script>
