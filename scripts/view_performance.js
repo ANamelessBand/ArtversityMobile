@@ -9,7 +9,7 @@
 
             kendo.data.ObservableObject.fn.init.apply(that, []);
 
-            $.getJSON(app.serverEndpoint + "/performances/1").success(function(data) {
+            $.getJSON("data/performance.json").success(function(data) {
                 that.set('performance', data);
             }).fail(function() {
                 navigator.notification.alert("Cannot read performance information!");

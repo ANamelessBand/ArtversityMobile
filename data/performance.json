@@ -1,8 +1,8 @@
 {
   "picture": "styles/images/anonymous.png",
-  "type": "Musician",
   "last_seen": "13.04.2014",
-  "seen_by": "21",
+  "times_tagged": "21",
+  "type": {"name": "Musician"},
   "categories": [
     {"name": "Guitar"},
     {"name": "Violin"}
