@@ -10,28 +10,16 @@
         },
 
         takePicture: function() {
-            console.log("Take picture");
-
-            // navigator.camera.getPicture(onSuccess, onFail,
-            // { destinationType : Camera.DestinationType.DATA_URL,
-            //   sourceType : Camera.PictureSourceType.CAMERA,
-            //   saveToPhotoAlbum: true });
-
-            // function onSuccess (imageData) {
-            //     alert(imageData);
-            // }
-
-            // function onFail (message) {
-            //     alert("Taking picture failed " + message)
-            // }
-
             document.addEventListener("deviceready", onDeviceReady, false);
 
             function onDeviceReady() {
-            // Retrieve image file location from specified source
+
             navigator.camera.getPicture(
                 uploadPhoto,
-                function(message) { alert('get picture failed ' + message); },
+                function(message) {
+                    navigator.notification.alert(message,
+                        function () { }, "Camera failed", 'OK');
+                },
                 {
                     destinationType : navigator.camera.DestinationType.FILE_URI,
                     sourceType      : navigator.camera.PictureSourceType.CAMERA,
@@ -42,32 +30,30 @@
 
             function uploadPhoto(imageURI) {
                 var options = new FileUploadOptions();
-                options.fileKey="file";
+                options.fileKey="image";
                 options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-                options.mimeType="image/jpeg";
+                options.mimeType="multipart/form-data";
 
                 var params = {};
-                // params.id = that.get("id");
-
-                options.params = params;
+                params.id = app.mediaService.viewModel.get("id");
 
                 var ft = new FileTransfer();
-                ft.upload(imageURI, encodeURI("https://api.imgur.com/3/image"), win, fail, options);
+                options.params = params;
+                kendo.mobile.application.showLoading();
+                ft.upload(imageURI, encodeURI("http://10.0.200.167:9292/media"), success, fail, options);
             }
 
-            // Awesome Epic Win!
-            function win(r) {
-                // console.log("Params= " + r.params)
-                console.log("Code = " + r.responseCode);
-                console.log("Response = " + r.response);
-                console.log("Sent = " + r.bytesSent);
-            }
+
+            function success(result) {
+                kendo.mobile.application.hideLoading();
+                kendo.mobile.application.navigate("views/view_performance.html");
+            }   
 
             // Where innocent kittens die
             function fail(error) {
-                alert("An error has occurred: Code = " + error.code);
-                console.log("upload error source " + error.source);
-                console.log("upload error target " + error.target);
+                kendo.mobile.application.hideLoading();
+                navigator.notification.alert("Unable to upload picture.",
+                        function () { }, "Upload picture failed", 'OK');
             }
 
         },
@@ -77,16 +63,58 @@
 
             function captureSuccess(mediaFiles) {
                 for (i = 0, len = mediaFiles.length; i < len; i += 1) {
-                    path = mediaFiles[i].fullPath;
-                    console.log("Path to video file: " + path);
+                    uploadVideo(mediaFiles[i])
                 }
                 kendo.mobile.application.navigate("views/view_performance.html");
             }
 
             function captureFail(error) {
-                console.log("Taking video failed " + error);
+                navigator.notification.alert("Unable to take video.",
+                        function () { }, "Taking video failed", 'OK');
             }
 
+            function uploadVideo(mediaFile) {
+                var options = new FileUploadOptions();
+                options.fileKey="video";
+                options.fileName=mediaFile.name;
+                options.mimeType="multipart/form-data";
+
+                var params = {};
+                params.id = app.mediaService.viewModel.get("id");
+
+                options.params = params;
+                var ft = new FileTransfer();
+                kendo.mobile.application.showLoading();
+                ft.upload(mediaFile.fullPath, encodeURI("http://10.0.200.167:9292/media"), success, fail, options);
+            }
+
+            function success(result) {
+                kendo.mobile.application.hideLoading();
+                kendo.mobile.application.navigate("views/view_performance.html");
+            }   
+
+            function fail(error) {
+                kendo.mobile.application.hideLoading();
+                navigator.notification.alert("Unable to upload video.",
+                        function () { }, "Uploading video failed", 'OK');
+            }
+        },
+
+        recordAudio: function() {
+            navigator.device.capture.captureAudio(captureSuccess, captureFail, {limit: 2, duration: 15});
+
+            function captureSuccess(mediaFiles) {
+                for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+                    path = mediaFiles[i].fullPath;
+                }
+
+                kendo.mobile.application.navigate("views/view_performance.html");
+            }
+
+            function captureFail(error) {
+                navigator.notification.alert("Unable to record audio.",
+                        function () { }, "Recording audio failed", 'OK');
+            }
         },
 
         setID: function(id) {
