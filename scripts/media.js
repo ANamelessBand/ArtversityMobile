@@ -41,16 +41,16 @@
                 options.mimeType="image/jpeg";
 
                 var params = {};
-                params.value1 = "test";
-                params.value2 = "param";
+                // params.id = that.get("id");
 
                 options.params = params;
 
                 var ft = new FileTransfer();
-                ft.upload(imageURI, encodeURI("http://servername"), win, fail, options);
+                ft.upload(imageURI, encodeURI("https://api.imgur.com/3/image"), win, fail, options);
             }
 
             function win(r) {
+                // console.log("Params= " + r.params)
                 console.log("Code = " + r.responseCode);
                 console.log("Response = " + r.response);
                 console.log("Sent = " + r.bytesSent);
@@ -78,10 +78,19 @@
                 console.log("Taking video failed " + error);
             }
 
+        },
+
+        setID: function(id) {
+            var that = this;
+            that.set("id", id);
         }
     });
 
     app.mediaService = {
-        viewModel: new MediaViewModel()
+        viewModel: new MediaViewModel(),
+
+        show: function (e) {
+            app.mediaService.viewModel.setID(e.view.params.id);
+        },
     };
 })(window);
