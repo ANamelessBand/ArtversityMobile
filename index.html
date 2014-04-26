@@ -6,18 +6,17 @@
     <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
     <link href="styles/main.css" rel="stylesheet" />
     <link href="styles/artversity.css" rel="stylesheet" />
-
     <script src="cordova.js"></script>
     <script src="kendo/js/jquery.min.js"></script>
     <script src="kendo/js/kendo.mobile.min.js"></script>
-    <!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script> -->
+    <!--script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script!-->
 
-    <script src="scripts/login.js"></script>
+    <script src="scripts/app.js"></script>
     <script src="scripts/view_performance.js"></script>
     <script src="scripts/map.js"></script>
-    <script src="scripts/weather.js"></script>
     <script src="scripts/media.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/nearby.js"></script>
 </head>
 <body>
     <div id="tabstrip-home"
@@ -35,30 +34,6 @@
             <h3>Location requires internet connection to display the map.</h3>
         </div>
     </div>
-    
-    <!--Weather View-->
-    <div id="tabstrip-weather"
-        data-role="view"
-        data-title="Weather"
-        data-model="app.weatherService.viewModel">
-
-        <ul data-role="listview" data-style="inset"
-            data-bind="source: weatherDataSource"
-            data-template="weather-forecast-template">
-        </ul>
-    </div>
-
-    <!--Weather forecast template-->
-    <script id="weather-forecast-template" type="text/x-kendo-tmpl">
-        <div class="w-item-template">
-            <span class="w-icon ${image}"></span>
-            <h4 class="w-date">${day}</h4>
-            <div class="w-temp">
-                <span>${highTemperature}<sup>&deg;</sup></span>
-                <span>${lowTemperature}<sup>&deg;</sup></span>
-            </div>
-        </div>
-    </script>
 
     <!--Layout-->
     <div data-role="layout" data-id="tabstrip-layout">
@@ -73,9 +48,9 @@
         <div data-role="footer">
             <div data-role="tabstrip">
                 <a href="#" data-icon="home">Performances</a>
-                <a href="views/sample_view.html" data-icon="contacts">Sample View</a>
                 <a href="views/view_performance.html" data-icon="globe">View Performance</a>
                 <a href="views/actions.html" data-icon="globe">Media</a>
+                <a href="#views/nearby.html" data-icon="search">Nearby</a>
             </div>
         </div>
     </div>

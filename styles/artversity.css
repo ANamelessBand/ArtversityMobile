@@ -25,6 +25,7 @@
 }
 
 #view-performance .photo {
+  margin: 0;
   width: 200px;
   height: 200px;
   display: inline-block;
@@ -56,4 +57,34 @@
   margin-bottom: 2em;
   vertical-align: middle;
   text-align: center;
+}
+
+.km-wp #view-performance .photo {
+  height: 15em;
+}
+
+.nearby-templ .image {
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  display: inline-block;
+  float: left;
+  margin-right: 20px;
+}
+
+
+.nearby-templ .tags {
+  display: inline;
+  max-width: 50px;
+}
+
+#newTag {
+  text-align: center
+}
+
+.green-button {
+  color: green;
+  background-color: blue;
 }

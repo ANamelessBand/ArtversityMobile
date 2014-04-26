@@ -1,0 +1,25 @@
+<div id="tabstrip-nearby"
+        data-role="view"
+        data-title="Nearby"
+        data-model="app.nearbyService.viewModel">
+
+        <ul data-role="listview" data-style="inset"
+            data-bind="source: nearbyDataSource"
+            data-template="nearby-template">
+        </ul>
+        <div id="newTag">
+            <a data-role="button" data-icon="add" class="button green-button" href="new-tag.html">New tag</a>
+        </div>
+
+    </div>
+
+    <script id="nearby-template" type="text/x-kendo-tmpl">
+        <a class="w-item-template" href="views/actions.html?id=${id}">
+            <div class="nearby-templ">
+                <div class="image" style="background-image: url(${url});"></div>
+                <div class="tags"><b>${tags}</b> tagged this performance</div><br />
+                <div class="tags"><b>last tagged:</b> ${lastTagged}</div><br />
+                <div class="tags"><b>category:</b> ${category}</div><br/>
+            </div>
+        </a>
+    </script>
