@@ -65,7 +65,7 @@
         },
 
         takeVideo: function() {
-            navigator.device.capture.captureVideo(captureSuccess, captureFail, {limit: 2});
+            navigator.device.capture.captureVideo(captureSuccess, captureFail, {limit: 2, duration: 15});
 
             function captureSuccess(mediaFiles) {
                 for (i = 0, len = mediaFiles.length; i < len; i += 1) {
