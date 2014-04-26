@@ -8,7 +8,7 @@
             data-bind="source: nearbyDataSource, visible: nearbyDataSource"
             data-template="nearby-template">
         </ul>
-        <div id="newTag">
+        <div id="newTag" data-bind="invisible: isLoading">
             <a data-role="button" data-icon="add" class="button green-button" href="views/tag.html">New tag</a>
         </div>
 

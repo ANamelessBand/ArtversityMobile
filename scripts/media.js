@@ -3,9 +3,14 @@
         app = global.app = global.app || {};
 
     MediaViewModel = kendo.data.ObservableObject.extend({
-        takePicture: function(e) {
+        skipMedia: function() {
+            kendo.mobile.application.navigate("#tabstrip-home");
+            var tabstrip = $("#footer-tabstrip").data("kendoMobileTabStrip");
+            tabstrip.switchTo("#tabstrip-home");
+        },
+
+        takePicture: function() {
             console.log("Take picture");
-            window.mytest = e;
 
             // navigator.camera.getPicture(onSuccess, onFail,
             // { destinationType : Camera.DestinationType.DATA_URL,
@@ -42,16 +47,16 @@
                 options.mimeType="image/jpeg";
 
                 var params = {};
-                params.value1 = "test";
-                params.value2 = "param";
+                // params.id = that.get("id");
 
                 options.params = params;
 
                 var ft = new FileTransfer();
-                ft.upload(imageURI, encodeURI("http://servername"), win, fail, options);
+                ft.upload(imageURI, encodeURI("https://api.imgur.com/3/image"), win, fail, options);
             }
 
             function win(r) {
+                // console.log("Params= " + r.params)
                 console.log("Code = " + r.responseCode);
                 console.log("Response = " + r.response);
                 console.log("Sent = " + r.bytesSent);
@@ -66,23 +71,33 @@
         },
 
         takeVideo: function() {
-            navigator.device.capture.captureVideo(captureSuccess, captureFail, {limit: 2});
+            navigator.device.capture.captureVideo(captureSuccess, captureFail, {limit: 2, duration: 15});
 
             function captureSuccess(mediaFiles) {
                 for (i = 0, len = mediaFiles.length; i < len; i += 1) {
                     path = mediaFiles[i].fullPath;
                     console.log("Path to video file: " + path);
                 }
+                kendo.mobile.application.navigate("views/view_performance.html");
             }
 
             function captureFail(error) {
                 console.log("Taking video failed " + error);
             }
 
+        },
+
+        setID: function(id) {
+            var that = this;
+            that.set("id", id);
         }
     });
 
     app.mediaService = {
-        viewModel: new MediaViewModel()
+        viewModel: new MediaViewModel(),
+
+        show: function (e) {
+            app.mediaService.viewModel.setID(e.view.params.id);
+        },
     };
 })(window);

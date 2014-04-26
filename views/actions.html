@@ -1,11 +1,12 @@
 <div id="media-view"
     data-role="view"
     data-title="Media"
+    data-show="app.mediaService.show"
     data-model="app.mediaService.viewModel">
     <div id="media-buttons">
          <a class="button" data-role="button" data-icon="camera" data-bind="click: takePicture">Take picture</a>
          <a class="button" data-role="button" data-icon="play" data-bind="click: takeVideo">Take video</a>
          <a class="button" data-role="button" data-icon="sounds" data-bind="click: recordAudio">Record audio</a>
-         <a class="button" data-role="button" href="#tabstrip-home">Skip</a>
+         <a class="button" data-role="button" data-bind="click: skipMedia">Skip</a>
     </div>
 </div>
