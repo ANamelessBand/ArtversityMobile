@@ -13,8 +13,12 @@
 
         markSingle: function(e) {
             var $button = $(e.target).parent("div");
+            if(!$button[0].id) {
+                return;
+            }
+
             this.data.type = $button[0].id;
-            $(".radioButton").removeClass("marked");
+            $(".category").removeClass("marked");
             $button.addClass("marked");
             this.updateSelection(this.data.type);
         },

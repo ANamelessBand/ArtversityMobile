@@ -123,18 +123,16 @@
   width: 60px;
   height: 60px;
 }
-#orange {
-  background-color: orange;
+.blue {
+  background-color: #10c4b2;
 }
 
-#green {
-  background-color: green;
+.green {
+  background-color: rgb(82, 162, 82);
 }
 
-#red {
-  background-color: red;
-  background-position: center;
-  background-repeat: no-repeat;
+.red {
+  background-color: rgb(238, 68, 75);
 }
 
 .centered {
