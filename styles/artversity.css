@@ -13,8 +13,16 @@
   float: right;
 }
 
+.clear {
+  clear: both;
+}
+
 .padding-top-1 {
   padding-top: 1em;
+}
+
+.centered {
+  text-align: center;
 }
 
 /* View Performance */
@@ -102,6 +110,16 @@
   text-align: center
 }
 
+#tag-view div[data-role='button-group'] {
+  width: 320px;
+  margin: 0 auto;
+}
+
+#tag-view div[data-role='button-group'] p {
+  margin-top: 85px;
+}
+
+
 .green-button {
   color: green;
   background-color: blue;
@@ -112,12 +130,11 @@
   width: 90px;
   height: 90px;
   margin-left: 10px;
+  margin-top: 25px;
   float: left;
   border: 5px solid gray;
   position: relative;
   opacity: 0.5;
-  overflow: hidden;
-  margin-top: 10px;
 }
 
 .category img {
@@ -139,18 +156,11 @@
   background-color: rgb(238, 68, 75);
 }
 
-.centered {
-  text-align: center;
-}
-
 .marked {
   opacity: 1;
   border-color: black;
 }
 
-.clear {
-  clear: both;
-}
 
 .bla {
   height: 40px;

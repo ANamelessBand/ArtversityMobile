@@ -1,73 +1,88 @@
 <div
+    id="tag-view"
     data-role="view"
     data-model="app.tagService.viewModel"
     data-title="Tag a performance"
     class="centered">
 
-    <h3>What are they doing ?</h3>
+    <h3>What are they doing?</h3>
     <div data-role="button-group">
         <div data-bind="click: markSingle" class="category blue radioButton" id="musician">
             <img src="styles/images/musician.png" />
+            <p>Musician</p>
         </div>
         <div data-bind="click: markSingle" class="category red radioButton" id="artist">
             <img src="styles/images/artist.png"/>
+            <p>Artist</p>
         </div>
         <div data-bind="click: markSingle" class="category green radioButton" id="actor">
             <img src="styles/images/actor.png"/>
+            <p>Actor</p>
         </div>
     </div>
+    <div class="clear"></div>
 
-    <h3>What are they using ?</h3>
+    <h3 class="padding-top-1">What are they using?</h3>
     <div data-role="button-group" data-bind="visible: isMusicianSelected">
         <div data-bind="click: mark" id="guitar" class="category blue">
             <img src="styles/images/guitar.png"/>
+            <p>Guitar</p>
         </div>
         <div data-bind="click: mark" id="violin" class="category blue">
             <img src="styles/images/violin.png"/>
+            <p>Violin</p>
         </div>
         <div data-bind="click: mark" id="trumpet" class="category blue">
             <img src="styles/images/trumpet.png"/>
+            <p>Trumpet</p>
         </div>
         <div data-bind="click: mark" id="accordion" class="category blue">
             <img src="styles/images/accordion.png"/>
+            <p>Accordion</p>
         </div>
         <div data-bind="click: mark" id="harp" class="category blue">
             <img src="styles/images/harp.png"/>
+            <p>Harp</p>
         </div>
         <div data-bind="click: mark" id="flute" class="category blue">
             <img src="styles/images/flute.png"/>
+            <p>Flute</p>
         </div>
     </div>
     <div data-role="button-group" data-bind="visible: isArtistSelected">
         <div data-bind="click: mark" id="graffiti" class="category red">
             <img src="styles/images/graffiti.png" />
+            <p>Graffitti</p>
         </div>
         <div data-bind="click: mark" id="cartoon" class="category red">
             <img src="styles/images/musician.png" />
+            <p>Cartoon</p>
         </div>
         <div data-bind="click: mark" id="portrait" class="category red">
             <img src="styles/images/portrait.png" />
-    </div>
-
+            <p>Portrait</p>
+        </div>
     </div>
     <div data-role="button-group" data-bind="visible: isActorSelected">
         <div data-bind="click: mark" id="drama" class="category green">
             <img src="styles/images/drama.png" />
+            <p>Drama</p>
         </div>
         <div data-bind="click: mark" id="humor" class="category green">
             <img src="styles/images/comedy.png" />
+            <p>Humour</p>
         </div>
         <div data-bind="click: mark" id="dance" class="category green">
             <img src="styles/images/dance.png" />
+            <p>Dance</p>
         </div>
     </div></br>
 
-    <div class="clear">
-        <h3>How many are they ?</h3>
-        <div class="centered">
-            <button class="button " data-bind="click: setBandSize" id="0">One person</button>
-            <button class="button " data-bind="click: setBandSize" id="1">A whole band</button>
-        </div>
+    <div class="clear"></div>
+    <h3 class="padding-top-1">How many are they?</h3>
+    <div class="centered">
+        <button class="button " data-bind="click: setBandSize" id="0">One person</button>
+        <button class="button " data-bind="click: setBandSize" id="1">A whole band</button>
     </div>
 
     <div data-role="button" data-bind="click: next">Next</div>

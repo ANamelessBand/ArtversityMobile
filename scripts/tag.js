@@ -3,9 +3,6 @@
         app = global.app = global.app || {};
 
     TagViewModel = kendo.data.ObservableObject.extend({
-        show: function() {
-
-        },
         data: {categories: []},
         isArtistSelected: false,
         isMusicianSelected: false,
@@ -19,6 +16,7 @@
 
             this.data.type = $button[0].id;
             $(".category").removeClass("marked");
+            this.data.categories = [];
             $button.addClass("marked");
             this.updateSelection(this.data.type);
         },
@@ -34,11 +32,9 @@
 
             if($button.hasClass("marked")) {
                 var newCategories = [];
-                for(var cat in this.data.categories) {
-                    if(this.data.categories.hasOwnProperty(cat)) {
-                        if(cat !== e.id) {
-                            newCategories.push(cat);
-                        }
+                for(var i=0; i<this.data.categories.length; i++) {
+                    if(this.data.categories[i] == _id) {
+                        newCategories.push(this.data.categories[i]);
                     }
                 }
                 this.data.categories = newCategories;
