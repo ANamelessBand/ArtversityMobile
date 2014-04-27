@@ -39,6 +39,24 @@
             } else {
                 kendo.mobile.application.navigate("views/tag.html")
             }
+        },
+
+        onClick: function(e) {
+            var $div = $(e.target);
+            if (!$div.hasClass("nearby-templ")) {
+                $div = $div.parents(".nearby-templ");
+            }
+            var id = $div.data('performance-id');
+            if(!id) {
+                return;
+            }
+
+            var putData = { "id": id};
+            $.ajax({
+                type: "PUT",
+                url: app.serverEndpoint + "performances",
+                data: putData
+            })
         }
     });
 

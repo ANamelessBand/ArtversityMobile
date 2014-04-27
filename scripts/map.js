@@ -69,15 +69,15 @@
                 $.each(markers, function(index ,element) {
                     position = new google.maps.LatLng(element.location_latitude, element.location_longitude);
                     switch(element.type.name) {
-                        case "Musician": {
+                        case "musician": {
                             icon = "guitar";
                             break;
                         }
-                        case "Artist": {
+                        case "artist": {
                             icon = "brush";
                             break;
                         }
-                        case "Actor": {
+                        case "actor": {
                             icon = "masks";
                             break;
                         }

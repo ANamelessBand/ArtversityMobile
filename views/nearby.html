@@ -19,7 +19,7 @@
 
     <script id="nearby-template" type="text/x-kendo-tmpl">
         <a class="w-item-template" href="views/actions.html?id=${id}">
-            <div class="nearby-templ">
+            <div class="nearby-templ"  data-performance-id="${id}" data-bind="click: onClick">
                 <div class="tags"><strong>${times_tagged}</strong> tagged this performance</div><br />
                 <div class="tags"><strong>Last tagged:</strong> ${last_seen}</div><br />
                 <div class="tags"><strong>Type:</strong> ${type.name}</div><br/>
