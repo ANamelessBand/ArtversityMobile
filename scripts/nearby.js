@@ -40,8 +40,6 @@
             } else {
                 kendo.mobile.application.navigate("views/tag.html")
             }
-
-
         },
 
         onClick: function(e) {
@@ -60,6 +58,20 @@
                 url: app.serverEndpoint + "performances",
                 data: putData
             })
+        },
+        formatDate: function(dateString) {
+            var minutes = ((Date.now() - new Date(dateString))/60000);
+            var hours = minutes/60;
+
+            if(hours >= 1.0) {
+                return Math.round(hours) + " hours ago";
+            }
+
+            if(minutes >= 1.0) {
+                return Math.round(minutes) + " minutes ago";
+            }
+
+            return "less than a minute ago";
         }
     });
 
