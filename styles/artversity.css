@@ -30,6 +30,8 @@
 #view-performance .profile-picture {
   float: left;
   margin: 0 1em;
+  overflow: hidden;
+  max-width: 150px;
 }
 
 .km-virtual-page {

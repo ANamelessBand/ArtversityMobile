@@ -10,7 +10,7 @@
 
       setURL: function(url) {
         var that = this;
-        that.set("url", url);
+        that.set("url", app.serverEndpoint + url);
       }
     });
 

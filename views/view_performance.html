@@ -9,7 +9,6 @@
     data-model="app.performanceViewService.viewModel"
     data-bind="invisible: isLoading">
     <p data-bind="invisible: isLoading">
-
             <div class="profile-picture"><img data-bind="attr: {src: performance.picture}" /></div>
             <p>
               Type: <span data-bind="text: performance.type.name"></span><br />
@@ -36,7 +35,7 @@
 
 <!--Performance Media Template-->
 <script id="performance-media-template" type="text/x-kendo-tmpl">
-  <a href="views/view_image.html?url=${url}" data-role="button"><div class="photo" style="background-image: url('${url}')" data-role="page"></div></a>
+  <a href="views/view_image.html?url=${large}" data-role="button"><div class="photo" style="background-image: url('${thumb}')" data-role="page"></div></a>
 </script>
 
 <script id="categories-template" type="text/x-kendo-tmpl">

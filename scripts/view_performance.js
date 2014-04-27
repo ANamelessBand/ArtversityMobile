@@ -10,24 +10,21 @@
                 dataSource;
 
             kendo.data.ObservableObject.fn.init.apply(that, []);
-
-            dataSource = new kendo.data.DataSource({
-                transport: {
-                    read: {
-                        url: "data/pictures.json",
-                        dataType: "json"
-                    }
-                }
-            });
-
-            that.set("performanceMediaDataSource", dataSource);
         },
 
         loadPerformance: function(id) {
             var that = this;
 
             $.getJSON(app.serverEndpoint + "performances/" + id).success(function(data) {
+                data.picture = app.serverEndpoint + data.picture;
                 that.set('performance', data);
+
+                for (var i = 0; i < data.pictures.length; i++) {
+                  data.pictures[i].thumb = app.serverEndpoint + data.pictures[i].thumb;
+                }
+
+                that.set('performanceMediaDataSource', data.pictures)
+
                 that.hideLoading();
             }).fail(function() {
                 that.hideLoading();
