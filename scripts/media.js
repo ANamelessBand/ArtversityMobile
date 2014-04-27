@@ -33,32 +33,24 @@
                 options.fileKey="image";
                 options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
                 options.mimeType="multipart/form-data";
-                console.dir(options.fileName);
+
                 var params = {};
                 params.performance_id = app.mediaService.viewModel.get("id");
 
                 var ft = new FileTransfer();
-                console.dir(ft);
                 options.params = params;
-                console.dir(options);
                 kendo.mobile.application.showLoading();
                 ft.upload(imageURI, encodeURI(app.serverEndpoint + "attachments/pictures"), success, fail, options);
             }
 
 
             function success(result) {
-                console.dir(result);
-                console.log(result.params);
-                console.log("Code = " + result.responseCode);
-                console.log("Response = " + result.response);
-                console.log("Sent = " + result.bytesSent);
                 kendo.mobile.application.hideLoading();
                 app.mediaService.viewModel.skipMedia();
             }   
 
             // Where innocent kittens die
             function fail(error) {
-                console.log(error);
                 kendo.mobile.application.hideLoading();
                 navigator.notification.alert("Unable to upload picture.",
                         function () { }, "Upload picture failed", 'OK');
@@ -72,7 +64,6 @@
 
             function captureSuccess(mediaFiles) {
                 for (i = 0, len = mediaFiles.length; i < len; i += 1) {
-                    console.log("start uploading: " + mediaFiles[i]);
                     uploadVideo(mediaFiles[i]);
                 }
                 app.mediaService.viewModel.skipMedia();
@@ -94,13 +85,11 @@
 
                 options.params = params;
                 var ft = new FileTransfer();
-                console.log(ft);
                 kendo.mobile.application.showLoading();
                 ft.upload(mediaFile.fullPath, encodeURI(app.serverEndpoint + "attachments/videos"), success, fail, options);
             }
 
             function success(result) {
-                console.dir(result);
                 kendo.mobile.application.hideLoading();
                 app.mediaService.viewModel.skipMedia();
             }   
@@ -139,13 +128,11 @@
 
                 options.params = params;
                 var ft = new FileTransfer();
-                console.log(ft);
                 kendo.mobile.application.showLoading();
                 ft.upload(mediaFile.fullPath, encodeURI(app.serverEndpoint + "attachments/audios"), success, fail, options);
             }
 
             function success(result) {
-                console.dir(result);
                 kendo.mobile.application.hideLoading();
                 app.mediaService.viewModel.skipMedia();
             }   
