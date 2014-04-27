@@ -56,7 +56,7 @@
                 url: app.serverEndpoint + "performances",
                 data: this.data
             }).done(function(data) {
-                kendo.mobile.application.navigate("views/actions.html?=" + data.id);
+                kendo.mobile.application.navigate("views/actions.html?id=" + data.id);
                 kendo.mobile.application.hideLoading();
             })
             .fail(function() {
