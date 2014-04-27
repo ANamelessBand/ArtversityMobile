@@ -52,8 +52,7 @@
             // Where innocent kittens die
             function fail(error) {
                 kendo.mobile.application.hideLoading();
-                navigator.notification.alert("Unable to upload picture.",
-                        function () { }, "Upload picture failed", 'OK');
+                app.mediaService.fail(error, "image");
             }
 
         },
@@ -96,8 +95,7 @@
 
             function fail(error) {
                 kendo.mobile.application.hideLoading();
-                navigator.notification.alert("Unable to upload video.",
-                        function () { }, "Uploading video failed", 'OK');
+                app.mediaService.fail(error, "video");
             }
         },
 
@@ -139,8 +137,7 @@
 
             function fail(error) {
                 kendo.mobile.application.hideLoading();
-                navigator.notification.alert("Unable to upload audio.",
-                        function () { }, "Uploading audio failed", 'OK');
+                app.mediaService.fail(error, "audio");
             }
         },
 
@@ -156,6 +153,23 @@
         show: function (e) {
             if(e.view.params.id) {
                 app.mediaService.viewModel.setID(e.view.params.id);
+            }
+        },
+
+        fail: function(error, type) {
+         switch (error.code) { 
+            case FileTransferError.FILE_NOT_FOUND_ERR:
+                navigator.notification.alert(type + " file not found.",
+                        function () { }, "Uploading " + type + " failed", 'OK'); 
+                break; 
+            case FileTransferError.INVALID_URL_ERR:
+                navigator.notification.alert("Bad " + type + " URL.",
+                        function () { }, "Uploading " + type + " failed", 'OK'); 
+                break; 
+            case FileTransferError.CONNECTION_ERR:
+                navigator.notification.alert("Connection error. Check your internet connection!",
+                        function () { }, "Uploading " + type + " failed", 'OK'); 
+                break; 
             }
         }
 
