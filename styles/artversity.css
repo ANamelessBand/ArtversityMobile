@@ -100,6 +100,11 @@
   margin-right: 20px;
 }
 
+.nearby-templ.km-button {
+  background: none !important;
+  background-color: transparent !important;
+  border: 0;
+}
 
 .nearby-templ .tags {
   display: inline;

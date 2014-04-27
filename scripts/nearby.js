@@ -12,6 +12,7 @@
         },
 
         show: function(e) {
+            var that = this;
             var position = app.mapService.viewModel.get("position");
             if(position) {
                 $.ajax({
@@ -39,6 +40,8 @@
             } else {
                 kendo.mobile.application.navigate("views/tag.html")
             }
+
+
         },
 
         onClick: function(e) {
