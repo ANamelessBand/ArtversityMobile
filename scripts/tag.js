@@ -49,7 +49,8 @@
         next: function() {
             var position = app.mapService.viewModel.get("position");
             this.data.location_longitude = position.longitude;
-            this.data.location_latitude = position.latitude
+            this.data.location_latitude = position.latitude;
+            this.data.isBand = true;
             kendo.mobile.application.showLoading();
             $.ajax({
                 type: "POST",

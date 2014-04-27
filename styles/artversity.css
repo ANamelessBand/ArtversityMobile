@@ -147,7 +147,7 @@
 .category img {
   position: absolute;
   top: 10px;
-  left: 5px;
+  left: 10px;
   width: 60px;
   height: 60px;
 }
@@ -168,10 +168,6 @@
   border-color: black;
 }
 
-
-.bla {
-  height: 40px;
-  /*width: 100px;
-  border-radius: 20px;
-  padding-left: 10px;*/
+.next {
+  top: 40px;
 }
