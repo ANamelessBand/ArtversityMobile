@@ -8,28 +8,29 @@
     data-hide="app.performanceViewService.hide"
     data-model="app.performanceViewService.viewModel"
     data-bind="invisible: isLoading">
-    <div data-bind="invisible: isLoading">
-        <div class="profile-picture"><img data-bind="attr: {src: performance.picture}" /></div>
-        <p>
-          Type: <span data-bind="text: performance.type.name"></span><br />
-          <ul id="cardsList"
-                data-role="listview"
-                data-bind="source: performance.categories" data-template="categories-template"></ul>
+    <p data-bind="invisible: isLoading">
+      
+            <div class="profile-picture"><img data-bind="attr: {src: performance.picture}" /></div>
+            <p>
+              Type: <span data-bind="text: performance.type.name"></span><br />
+              <ul id="cardsList"
+                    data-role="listview"
+                    data-bind="source: performance.categories" data-template="categories-template"></ul>
 
-        </p>
-        <div id="scrollview-container">
-            <div
-                data-role="scrollview"
-                data-bind="source: performanceMediaDataSource"
-                data-template="performance-media-template"
-                data-content-height="200px">
+            </p>
+            <div id="scrollview-container">
+                <div
+                    data-role="scrollview"
+                    data-bind="source: performanceMediaDataSource"
+                    data-template="performance-media-template"
+                    data-content-height="200px">
+                </div>
             </div>
-        </div>
-        <p>
-          Last Seen: <span data-bind="text: performance.last_seen"></span><br />
-          Seen By: <span data-bind="text: performance.times_tagged"></span><br />
-        </p>
-    </div>
+            <p>
+              Last Seen: <span data-bind="text: performance.last_seen"></span><br />
+              Seen By: <span data-bind="text: performance.times_tagged"></span><br />
+            </p>
+    </p>
 </div>
 
 

@@ -57,7 +57,7 @@
         },
 
         loadMarkers: function () {
-            var that = this;
+            var that = this, icon;
 
             that.updateLoading(1);
 
@@ -68,7 +68,23 @@
                 
                 $.each(markers, function(index ,element) {
                     position = new google.maps.LatLng(element.location_latitude, element.location_longitude);
-                    that.putMarker(position, "performer-marker-16", element.id, function(marker) {
+                    switch(element.type.name) {
+                        case "Musician": {
+                            icon = "guitar";
+                            break;
+                        }
+                        case "Artist": {
+                            icon = "brush";
+                            break;
+                        }
+                        case "Actor": {
+                            icon = "masks";
+                            break;
+                        }
+                    }
+
+                    icon += element.active ? "-red" : "-gray"
+                    that.putMarker(position, icon, element.id, function(marker) {
                         kendo.mobile.application.navigate("views/view_performance.html?id=" + marker.performance_id);
                     });
                 });
@@ -98,6 +114,7 @@
             var marker = new google.maps.Marker({
                 performance_id: performance_id,
                 map: map,
+                zIndex: performance_id ? 0 : google.maps.Marker.MAX_ZINDEX,
                 position: position,
                 icon: "styles/images/" + icon + ".png",
             });
@@ -123,7 +140,7 @@
             app.mapService.viewModel.set("isGoogleMapsInitialized", true);
 
             mapOptions = {
-                zoom: 15,
+                zoom: 20,
                 mapTypeId: google.maps.MapTypeId.TERRAIN ,
                 zoomControl: true,
                 zoomControlOptions: {
