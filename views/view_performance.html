@@ -9,26 +9,44 @@
     data-model="app.performanceViewService.viewModel"
     data-bind="invisible: isLoading">
     <p data-bind="invisible: isLoading">
-            <div class="profile-picture"><img data-bind="attr: {src: performance.picture}" /></div>
-            <p>
-              Type: <span data-bind="text: performance.type.name"></span><br />
-              <ul id="cardsList"
-                    data-role="listview"
-                    data-bind="source: performance.categories" data-template="categories-template"></ul>
+        <div class="profile-picture"><img data-bind="attr: {src: performance.picture}" /></div>
+        <p>
+          <h2>
+            <span data-bind="text: performance.type.name"></span>
+          </h2>
 
-            </p>
-            <div id="scrollview-container">
-                <div
-                    data-role="scrollview"
-                    data-bind="source: performanceMediaDataSource"
-                    data-template="performance-media-template"
-                    data-content-height="200px">
-                </div>
-            </div>
-            <p>
-              Last Seen: <span data-bind="text: performance.last_seen"></span><br />
-              Seen By: <span data-bind="text: performance.times_tagged"></span><br />
-            </p>
+          <ul id="cardsList"
+              data-role="listview"
+              data-bind="source: performance.categories"
+              data-template="categories-template">
+          </ul>
+        </p>
+        <p>
+          Last Seen:
+          <span data-bind="text: performance.last_seen"></span><br />
+          Seen By:
+          <span data-bind="text: performance.times_tagged"></span><br />
+        </p>
+        <p data-bind="invisible: noVideo">
+          <div class="clear"></div>
+          <h4>Videos: </h4>
+          <ul id="videoList"
+              data-role="listview"
+              data-bind="source: performanceVideoDataSource"
+              data-template="videos-template">
+          </ul>
+        </p>
+        <p>
+          <h4>Photos: </h4>
+          <div id="scrollview-container">
+              <div
+                  data-role="scrollview"
+                  data-bind="source: performanceMediaDataSource"
+                  data-template="performance-media-template"
+                  data-content-height="200px">
+              </div>
+          </div>
+        </p>
     </p>
 </div>
 
@@ -40,4 +58,9 @@
 
 <script id="categories-template" type="text/x-kendo-tmpl">
   #: name #
+</script>
+<script id="videos-template" type="text/x-kendo-tmpl">
+  <video width="320" height="240" controls="controls">
+    <source src="#:filename#" type="video/mp4" />
+  </video>
 </script>

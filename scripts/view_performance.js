@@ -14,6 +14,7 @@
 
         loadPerformance: function(id) {
             var that = this;
+            that.set('performanceVideoDataSource', []);
 
             $.getJSON(app.serverEndpoint + "performances/" + id).success(function(data) {
                 data.picture = app.serverEndpoint + data.picture;
@@ -21,6 +22,15 @@
 
                 for (var i = 0; i < data.pictures.length; i++) {
                   data.pictures[i].thumb = app.serverEndpoint + data.pictures[i].thumb;
+                }
+
+                if (data.videos.length > 0) {
+                  for (var i = 0; i < data.videos.length; i++) {
+                    data.videos[i].filename = app.serverEndpoint + data.videos[i].filename;
+                  }
+                  that.set('performanceVideoDataSource', data.videos);
+                } else {
+                  that.set('noVideo', true);
                 }
 
                 that.set('performanceMediaDataSource', data.pictures)
