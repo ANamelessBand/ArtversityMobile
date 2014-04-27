@@ -20,13 +20,24 @@
     <script id="nearby-template" type="text/x-kendo-tmpl">
         <a class="w-item-template" href="views/actions.html?id=${id}">
             <div class="nearby-templ" data-role="button"  data-performance-id="${id}" data-bind="click: onClick">
-                # var formattedDate = app.nearbyService.viewModel.formatDate(last_seen); #
-                <div class="tags"><strong>${times_tagged}</strong> tagged this performance</div><br />
-                <div class="tags"><strong>Last tagged:</strong> ${formattedDate}</div><br />
-                <div class="tags"><strong>Type:</strong> ${type.name}</div><br/>
-                <div class="tags"><b>categories:</b></div>
+                # if(true) { #
+                    <div class="image" style="background-image: url(#= app.serverEndpoint + picture #)"  />
+                # } #
+                <div class="tags">
+                    <strong>${times_tagged}</strong> tagged this performance
+                </div><br />
+                <div class="tags">
+                    <strong>Last tagged:</strong>
+                    #= app.nearbyService.viewModel.formatDate(last_seen) #
+                </div><br />
+                <div class="tags">
+                    <strong>Type:</strong> ${type.name}
+                </div><br/>
+                <div class="tags">
+                    <strong>categories:</strong>
+                </div>
                 # for (var i = 0; i < categories.length; i++) { #
-                    <div class="tags">#= categories[i].name #</div>
+                    <div class="tags"> #= categories[i].name # </div>
                     # if(i !== categories.length - 1) { #
                         ,
                     # } #

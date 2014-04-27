@@ -21,24 +21,24 @@
                     var performances = data;
                     if(performances.length !== 0) {
                         var dataSource = new kendo.data.DataSource({
-                            data: performances,
+                            data: performances
                         });
 
                         app.nearbyService.viewModel.set("nearbyDataSource", dataSource);
                         app.nearbyService.viewModel.set("isLoading", false);
                     }
                     else {
-                        kendo.mobile.application.navigate("views/tag.html")
+                        kendo.mobile.application.navigate("views/tag.html");
                     }
                 })
                 .fail(function() {
-                    kendo.mobile.application.navigate("views/tag.html")
+                    kendo.mobile.application.navigate("views/tag.html");
                 })
                 .complete(function() {
                     kendo.mobile.application.hideLoading();
                 })
             } else {
-                kendo.mobile.application.navigate("views/tag.html")
+                kendo.mobile.application.navigate("views/tag.html");
             }
         },
 
@@ -59,8 +59,9 @@
                 data: putData
             })
         },
+
         formatDate: function(dateString) {
-            var minutes = ((Date.now() - new Date(dateString))/60000);
+            var minutes = (Date.now() - new Date(dateString))/60000;
             var hours = minutes/60;
 
             if(hours >= 1.0) {
