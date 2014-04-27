@@ -33,24 +33,32 @@
                 options.fileKey="image";
                 options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
                 options.mimeType="multipart/form-data";
-
+                console.dir(options.fileName);
                 var params = {};
-                params.id = app.mediaService.viewModel.get("id");
+                params.performance_id = app.mediaService.viewModel.get("id");
 
                 var ft = new FileTransfer();
+                console.dir(ft);
                 options.params = params;
+                console.dir(options);
                 kendo.mobile.application.showLoading();
-                ft.upload(imageURI, encodeURI("http://10.0.200.167:9292/media"), success, fail, options);
+                ft.upload(imageURI, encodeURI(app.serverEndpoint + "attachments/pictures"), success, fail, options);
             }
 
 
             function success(result) {
+                console.dir(result);
+                console.log(result.params);
+                console.log("Code = " + result.responseCode);
+                console.log("Response = " + result.response);
+                console.log("Sent = " + result.bytesSent);
                 kendo.mobile.application.hideLoading();
-                kendo.mobile.application.navigate("views/view_performance.html");
+                app.mediaService.viewModel.skipMedia();
             }   
 
             // Where innocent kittens die
             function fail(error) {
+                console.log(error);
                 kendo.mobile.application.hideLoading();
                 navigator.notification.alert("Unable to upload picture.",
                         function () { }, "Upload picture failed", 'OK');
@@ -59,13 +67,15 @@
         },
 
         takeVideo: function() {
-            navigator.device.capture.captureVideo(captureSuccess, captureFail, {limit: 2, duration: 15});
+            navigator.device.capture.captureVideo(
+                captureSuccess, captureFail, {limit: 1, duration: 15});
 
             function captureSuccess(mediaFiles) {
                 for (i = 0, len = mediaFiles.length; i < len; i += 1) {
-                    uploadVideo(mediaFiles[i])
+                    console.log("start uploading: " + mediaFiles[i]);
+                    uploadVideo(mediaFiles[i]);
                 }
-                kendo.mobile.application.navigate("views/view_performance.html");
+                app.mediaService.viewModel.skipMedia();
             }
 
             function captureFail(error) {
@@ -80,17 +90,19 @@
                 options.mimeType="multipart/form-data";
 
                 var params = {};
-                params.id = app.mediaService.viewModel.get("id");
+                params.performance_id = app.mediaService.viewModel.get("id");
 
                 options.params = params;
                 var ft = new FileTransfer();
+                console.log(ft);
                 kendo.mobile.application.showLoading();
-                ft.upload(mediaFile.fullPath, encodeURI("http://10.0.200.167:9292/media"), success, fail, options);
+                ft.upload(mediaFile.fullPath, encodeURI(app.serverEndpoint + "attachments/videos"), success, fail, options);
             }
 
             function success(result) {
+                console.dir(result);
                 kendo.mobile.application.hideLoading();
-                kendo.mobile.application.navigate("views/view_performance.html");
+                app.mediaService.viewModel.skipMedia();
             }   
 
             function fail(error) {
@@ -101,19 +113,47 @@
         },
 
         recordAudio: function() {
-            navigator.device.capture.captureAudio(captureSuccess, captureFail, {limit: 2, duration: 15});
+            navigator.device.capture.captureAudio(captureSuccess, captureFail, {limit: 1, duration: 15});
 
             function captureSuccess(mediaFiles) {
                 for (i = 0, len = mediaFiles.length; i < len; i += 1) {
-                    path = mediaFiles[i].fullPath;
+                    uploadAudio(mediaFiles[i]);
                 }
 
-                kendo.mobile.application.navigate("views/view_performance.html");
+                app.mediaService.viewModel.skipMedia();
             }
 
             function captureFail(error) {
                 navigator.notification.alert("Unable to record audio.",
                         function () { }, "Recording audio failed", 'OK');
+            }
+
+            function uploadAudio(mediaFile) {
+                var options = new FileUploadOptions();
+                options.fileKey="audio";
+                options.fileName=mediaFile.name;
+                options.mimeType="multipart/form-data";
+
+                var params = {};
+                params.performance_id = app.mediaService.viewModel.get("id");
+
+                options.params = params;
+                var ft = new FileTransfer();
+                console.log(ft);
+                kendo.mobile.application.showLoading();
+                ft.upload(mediaFile.fullPath, encodeURI(app.serverEndpoint + "attachments/audios"), success, fail, options);
+            }
+
+            function success(result) {
+                console.dir(result);
+                kendo.mobile.application.hideLoading();
+                app.mediaService.viewModel.skipMedia();
+            }   
+
+            function fail(error) {
+                kendo.mobile.application.hideLoading();
+                navigator.notification.alert("Unable to upload audio.",
+                        function () { }, "Uploading audio failed", 'OK');
             }
         },
 
@@ -127,7 +167,10 @@
         viewModel: new MediaViewModel(),
 
         show: function (e) {
-            app.mediaService.viewModel.setID(e.view.params.id);
-        },
+            if(e.view.params.id) {
+                app.mediaService.viewModel.setID(e.view.params.id);
+            }
+        }
+
     };
 })(window);
