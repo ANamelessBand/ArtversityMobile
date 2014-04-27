@@ -1,16 +1,19 @@
 <div id="tabstrip-nearby"
         data-role="view"
-        data-title="Nearby"
+        data-title="Nearby performers"
         data-show="app.nearbyService.viewModel.show"
+        data-after-show="app.nearbyService.afterShow"
+        data-hide="app.nearbyService.hide"
         data-model="app.nearbyService.viewModel">
 
+        <div id="newTag"  data-bind="invisible: isLoading">
+            <a data-role="button" data-icon="add" class="button green-button" href="views/tag.html">New performer</a>
+        </div>
+        <h3>Do you find the performer here?</h3>
         <ul data-role="listview" data-style="inset"
-            data-bind="source: nearbyDataSource, visible: nearbyDataSource"
+            data-bind="source: nearbyDataSource,invisible: isLoading, visible: nearbyDataSource"
             data-template="nearby-template">
         </ul>
-        <div id="newTag" data-bind="invisible: isLoading">
-            <a data-role="button" data-icon="add" class="button green-button" href="views/tag.html">New tag</a>
-        </div>
 
     </div>
 

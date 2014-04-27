@@ -14,7 +14,6 @@
         show: function(e) {
             var position = app.mapService.viewModel.get("position");
             if(position) {
-                kendo.mobile.application.showLoading();
                 $.ajax({
                   url: app.serverEndpoint + "performances/nearby/" + position.latitude + "/" + position.longitude
                 }).done(function(data) {
@@ -44,6 +43,13 @@
     });
 
     app.nearbyService = {
+        afterShow: function() {
+            kendo.mobile.application.showLoading();
+            app.nearbyService.viewModel.set("isLoading", true);
+        },
+        hide: function () {
+            kendo.mobile.application.hideLoading();
+        },
         viewModel: new NearbyViewModel()
     };
 })(window);

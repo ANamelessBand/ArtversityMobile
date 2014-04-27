@@ -69,8 +69,7 @@
                 $.each(markers, function(index ,element) {
                     position = new google.maps.LatLng(element.location_latitude, element.location_longitude);
                     that.putMarker(position, "performer-marker-16", element.id, function(marker) {
-                        that.set("performance_id", marker.performance_id);
-                        kendo.mobile.application.navigate("views/view_performance.html");
+                        kendo.mobile.application.navigate("views/view_performance.html?id=" + marker.performance_id);
                     });
                 });
 
