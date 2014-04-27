@@ -6,7 +6,7 @@
         data-hide="app.nearbyService.hide"
         data-model="app.nearbyService.viewModel">
 
-        <div id="newTag"  data-bind="invisible: isLoading">
+        <div id="newTag"  data-bind="invisible: isLoading" class="padding-top-1">
             <a data-role="button" data-icon="add" class="button green-button" href="views/tag.html">New performer</a>
         </div>
         <h3>Do you find the performer here?</h3>
@@ -20,9 +20,9 @@
     <script id="nearby-template" type="text/x-kendo-tmpl">
         <a class="w-item-template" href="views/actions.html?id=${id}">
             <div class="nearby-templ">
-                <div class="tags"><b>${times_tagged}</b> tagged this performance</div><br />
-                <div class="tags"><b>last tagged:</b> ${last_seen}</div><br />
-                <div class="tags"><b>type:</b> ${type.name}</div><br/>
+                <div class="tags"><strong>${times_tagged}</strong> tagged this performance</div><br />
+                <div class="tags"><strong>Last tagged:</strong> ${last_seen}</div><br />
+                <div class="tags"><strong>Type:</strong> ${type.name}</div><br/>
             </div>
         </a>
     </script>
